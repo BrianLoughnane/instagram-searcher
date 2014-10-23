@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="en" ng-app="myApp">
+<head>
+	<link rel="stylesheet" type="text/css" href="normalize.css">
+	<link rel="stylesheet" type="text/css" href="style.css">
+	<!-- <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.25/angular.min.js"></script> -->
+	<meta charset="UTF-8">
+	<title>Instagram Searcher</title>
+	<script src="jquery-1.11.1.js"></script>
+	<script src="angular.min.js" type="text/javascript"></script>
+	<script src="angular-animate.js"></script>
+	<script src="app.js"></script>
+</head>
+<body ng-controller="MyController">
+	<div class="container">
+		<img class="main-image" src="ng-instagram.png">
+		<form ng-submit="submit()">
+			<input type="text" placeholder="Enter a tag to search" ng-model='searchTerm' required>
+			<input type="submit">
+		</form>
+		<span ng-if="submitted && !resolved && !failed">Searching Instagram for photos tagged with {{ tag }}</span>
+		<span ng-if="submitted && resolved && !failed">We found 20 results for {{ tag }}</span>
+		<span ng-if="failed">Something went wrong with your request...</span>
+		<img ng-repeat="result in results" src="">
+	</div>
+	
+</body>
+</html>
+

@@ -1,0 +1,45 @@
+* {
+	box-sizing: border-box;
+	outline: 1px solid darkblue;
+}
+
+html {
+	height: 100%;
+}
+
+body {
+	height: 100%;
+	font-family: serif;
+}
+
+.container {
+	height: 100%;
+	text-align: center;
+}
+
+.main-image {
+	margin-top: 10%;
+	width: 50%;
+}
+
+form {
+	margin: 2% 0%;
+}
+
+input {
+	margin: 0% 1%;
+	height: 32px;
+}
+
+input[type="text"] {
+	width: 23%;
+}
+
+input[type="submit"] {
+	padding: 0% 2%;
+}
+
+span {
+	display: block;
+	font-size: 30px;
+}
