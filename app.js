@@ -1,5 +1,7 @@
 var myApp = angular.module('myApp', ['ngAnimate']);
 myApp.controller('MyController', function($scope, $http) {
+	$scope.imageLinks = [];
+	$scope.profileLinks = [];
 	$scope.submit = function() {
 		var tag = $scope.searchTerm;
 		var tagString = tag.toString();
@@ -20,24 +22,34 @@ myApp.controller('MyController', function($scope, $http) {
 		$scope.failed = false;
 
 		$http(config).success(function(response) {
+				var resultDisplay = document.getElementsByClassName('resultDisplay')[0];
+				resultDisplay.innerHTML = '';
+
 				$scope.resolved = true;
-				$scope.numResults = response.data.length;
 
-				$scope.response = response;
-				// $scope.imageLinks = [];
-				// $scope.profileLinks = [];
+				for (var i = 0; i < response.data.length; i++) {
+					$scope.imageLinks[i] = response.data[i].images.low_resolution.url;
+					$scope.profileLinks[i] = response.data[i].link; 
+				}
 
-				
-				// for (var i = 0; i < response.data.length; i++) {
-				// 	$scope.imageLinks[i] = response.data[i].images.low_resolution.url;
-				// 	$scope.profileLinks[i] = response.data[i].link;
-				// }
+				console.log('imagelinks', $scope.imageLinks);
+				console.log('profilelinks', $scope.profileLinks);
 
-				// console.log('imageLinks', $scope.imageLinks);
-				// console.log('profileLinks', $scope.profileLinks)
+				for (var i = 0; i < response.data.length; i++) {
+					var a = document.createElement("a");
+					a.setAttribute('href', $scope.profileLinks[i]);
+					var img = document.createElement("img");
+					img.setAttribute('src', $scope.imageLinks[i]);
+					a.innerHTML = img; // displaying [object HTMLImageElement] rather than actual image
+/*returns 'undefined' in place of image */	// a.innerHTML = document.createElement("img").setAttribute('src', $scope.imageLinks[i]);
+					resultDisplay.appendChild(a);
+				}
+
+
 			}).error(function(message) {
 				$scope.failed = true;
 			});
+
 	}
 	
 });
