@@ -24,7 +24,7 @@ myApp.controller('MyController', function($scope, $http) {
 		$http(config).success(function(response) {
 				var resultDisplay = document.getElementsByClassName('resultDisplay')[0];
 				resultDisplay.innerHTML = '';
-				
+
 				$scope.resolved = true;
 
 				for (var i = 0; i < response.data.length; i++) {
@@ -40,8 +40,8 @@ myApp.controller('MyController', function($scope, $http) {
 					a.setAttribute('href', $scope.profileLinks[i]);
 					var img = document.createElement("img");
 					img.setAttribute('src', $scope.imageLinks[i]);
-					a.innerHTML = img;
-
+					a.innerHTML = img; // displaying [object HTMLImageElement] rather than actual image
+/*returns 'undefined' in place of image */	// a.innerHTML = document.createElement("img").setAttribute('src', $scope.imageLinks[i]);
 					resultDisplay.appendChild(a);
 				}
 
