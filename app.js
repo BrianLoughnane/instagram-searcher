@@ -22,37 +22,26 @@ myApp.controller('MyController', function($scope, $http) {
 		$scope.failed = false;
 
 		$http(config).success(function(response) {
+				var resultDisplay = document.getElementsByClassName('resultDisplay')[0];
+				resultDisplay.innerHTML = '';
+				
 				$scope.resolved = true;
-				// console.log(response);
 
-				// iterate over the objects that represent photos
-				// fore each object, extract 2 data points:
-				//       // image link 
-				//       // link to profile
-				// insert those data points into image els in the dom
 				for (var i = 0; i < response.data.length; i++) {
-					$scope.imageLinks.push(response.data[i].images.low_resolution.url);
-					$scope.profileLinks.push(response.data[i].link);
-					// $scope.results.push(response.data);					
+					$scope.imageLinks[i] = response.data[i].images.low_resolution.url;
+					$scope.profileLinks[i] = response.data[i].link; 
 				}
 
 				console.log('imagelinks', $scope.imageLinks);
 				console.log('profilelinks', $scope.profileLinks);
 
-				// var p = document.createElement("p");
-				// p.innerText("new para");
-				// document.body.appendChild(p);
-				// console.log(p);				
-
 				for (var i = 0; i < response.data.length; i++) {
-					// document.body.appendChild('<a href="'+ $scope.profileLinks[i] +'"><img src="' +  $scope.imageLinks[i] +'"></a>')
 					var a = document.createElement("a");
 					a.setAttribute('href', $scope.profileLinks[i]);
 					var img = document.createElement("img");
 					img.setAttribute('src', $scope.imageLinks[i]);
-					// a.innerHTML = img;
-					a.innerText = img;
-					var resultDisplay = document.getElementsByClassName('resultDisplay')[0];
+					a.innerHTML = img;
+
 					resultDisplay.appendChild(a);
 				}
 
