@@ -2,7 +2,10 @@ var myApp = angular.module('myApp', ['ngAnimate']);
 myApp.controller('MyController', function($scope, $http) {
 	$scope.imageLinks = [];
 	$scope.profileLinks = [];
+	// $scope.valid = $scope.form	.$valid;
+		// console.log('before', $scope.form.$valid);
 	$scope.submit = function() {
+		$scope.valid = $scope.form.$valid;
 		var tag = $scope.searchTerm;
 		var tagString = tag.toString();
 		var config = {
@@ -20,6 +23,8 @@ myApp.controller('MyController', function($scope, $http) {
 		$scope.submitted = true;
 		$scope.resolved = false;
 		$scope.failed = false;
+
+
 
 		$http(config).success(function(response) {
 				var resultDisplay = document.getElementsByClassName('resultDisplay')[0];
@@ -39,10 +44,15 @@ myApp.controller('MyController', function($scope, $http) {
 					var a = document.createElement("a");
 					a.setAttribute('href', $scope.profileLinks[i]);
 					var img = document.createElement("img");
-					img.setAttribute('src', $scope.imageLinks[i]);
+					// img.setAttribute('src', $scope.imageLinks[i]);
+					img.src = $scope.imageLinks[i];
+					// a.class = 'images';
 					// a.innerHTML = img; // displaying [object HTMLImageElement] rather than actual image
 /*returns 'undefined' in place of image */	// a.innerHTML = document.createElement("img").setAttribute('src', $scope.imageLinks[i]);
-					angular.element(a).html(img);
+					// angular.element(a).html(img);
+					var tmp = document.createElement('div');
+					tmp.appendChild(img);
+					a.innerHTML = tmp.innerHTML;
 					resultDisplay.appendChild(a);
 				}
 

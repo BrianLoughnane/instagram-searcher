@@ -14,13 +14,14 @@
 <body ng-controller="MyController">
 	<div class="container">
 		<img class="main-image" src="ng-instagram.png">
-		<form ng-submit="submit()">
-			<input type="text" placeholder="Enter a tag to search" ng-model='searchTerm' required>
+		<form ng-submit="submit()" name="form" novalidate>
+			<input type="text" name="input" placeholder="Enter a tag to search" ng-model='searchTerm' required>
 			<input type="submit">
 		</form>
-		<span ng-if="submitted && !resolved && !failed">Searching Instagram for photos tagged with {{ tag }}</span>
+		<span ng-if="submitted && !resolved && !failed && valid">Searching Instagram for photos tagged with {{ tag }}</span>
 		<span ng-if="submitted && resolved && !failed">We found 20 results for {{ tag }}</span>
-		<span ng-if="failed">Something went wrong with your request...</span>
+		<span ng-if="failed && valid">Something went wrong with your request...</span>
+		<span ng-if="submitted && !valid">Hey!  You didn't enter a search term!</span>
 		<div class="resultDisplay">
 			
 		</div>
