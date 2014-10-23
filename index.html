@@ -19,17 +19,12 @@
 			<input type="submit">
 		</form>
 		<span ng-if="submitted && !resolved && !failed">Searching Instagram for photos tagged with {{ tag }}</span>
-		<span ng-if="submitted && resolved && !failed">We found {{ numResults }} results for {{ tag }}</span>
+		<span ng-if="submitted && resolved && !failed">We found 20 results for {{ tag }}</span>
 		<span ng-if="failed">Something went wrong with your request...</span>
 		<div class="resultDisplay">
 			
 		</div>
-<!-- 		<img ng-repeat="result in imageLinks" class="images" ng-src="https://fbcdn-sphotos-b-a.akamaihd.net/hphotos-ak-xfp1/v/t1.0-9/1661582_10203718760061993_4160092379533213628_n.jpg?oh=d95ee4e4e6f3169f9c4cc0014f0bf8da&oe=54AA7662&__gda__=1425581362_c07e2a977fa86df83e263f846ce55228"> -->
-<!-- 	<img ng-repeat="i in response.data" class="images" ng-src="{{ response.data[i].image.low_resolution.url }}"> -->
-
-	<a ng-repeat="i in response.data" href="{{ response.data[i].link }}">
-	<img class="images" ng-src="{{ response.data[i].image.low_resolution.url }}">
-	</a>
+		<img ng-repeat="result in results" src="">
 	</div>
 	
 </body>
