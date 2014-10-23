@@ -21,6 +21,9 @@
 		<span ng-if="submitted && !resolved && !failed">Searching Instagram for photos tagged with {{ tag }}</span>
 		<span ng-if="submitted && resolved && !failed">We found 20 results for {{ tag }}</span>
 		<span ng-if="failed">Something went wrong with your request...</span>
+		<div class="resultDisplay">
+			
+		</div>
 		<img ng-repeat="result in results" src="">
 	</div>
 	
