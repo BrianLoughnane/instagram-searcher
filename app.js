@@ -40,8 +40,9 @@ myApp.controller('MyController', function($scope, $http) {
 					a.setAttribute('href', $scope.profileLinks[i]);
 					var img = document.createElement("img");
 					img.setAttribute('src', $scope.imageLinks[i]);
-					a.innerHTML = img; // displaying [object HTMLImageElement] rather than actual image
+					// a.innerHTML = img; // displaying [object HTMLImageElement] rather than actual image
 /*returns 'undefined' in place of image */	// a.innerHTML = document.createElement("img").setAttribute('src', $scope.imageLinks[i]);
+					angular.element(a).html(img);
 					resultDisplay.appendChild(a);
 				}
 
