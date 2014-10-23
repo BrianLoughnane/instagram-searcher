@@ -7,8 +7,11 @@ myApp.controller('MyController', function($scope, $http) {
 		var config = {
 			url: 'https://api.instagram.com/v1/tags/'+  tagString +'/media/recent',
 			method: 'GET',
-			callback: 'JSON_CALLBACK',
-			client_id: '161eb0c438eb4699b7e00114e0dc0be0'
+			params: {
+				callback: 'JSON_CALLBACK',
+				client_id: '161eb0c438eb4699b7e00114e0dc0be0'				
+			}
+			
 		};
 
 		$scope.searchTerm = '';
