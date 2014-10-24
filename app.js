@@ -1,15 +1,10 @@
 var myApp = angular.module('myApp', ['ngAnimate']);
 myApp.controller('MyController', function($scope, $http) {
-	$scope.imageLinks = [];
-	$scope.profileLinks = [];
-	// $scope.valid = $scope.form	.$valid;
-		// console.log('before', $scope.form.$valid);
 	$scope.submit = function() {
-		$scope.valid = $scope.form.$valid;
 		var tag = $scope.searchTerm;
-		var tagString = tag.toString();
+		// var tagString = tag.toString();
 		var config = {
-			url: 'https://api.instagram.com/v1/tags/'+  tagString +'/media/recent',
+			url: 'https://api.instagram.com/v1/tags/'+  tag +'/media/recent',
 			method: 'JSONP',
 			params: {
 				callback: 'JSON_CALLBACK',
@@ -23,40 +18,28 @@ myApp.controller('MyController', function($scope, $http) {
 		$scope.submitted = true;
 		$scope.resolved = false;
 		$scope.failed = false;
-
-
+		$scope.valid = $scope.form.$valid;
 
 		$http(config).success(function(response) {
-				var resultDisplay = document.getElementsByClassName('resultDisplay')[0];
-				resultDisplay.innerHTML = '';
-
 				$scope.resolved = true;
+				$scope.numResults = response.data.length;
 
-				for (var i = 0; i < response.data.length; i++) {
-					$scope.imageLinks[i] = response.data[i].images.low_resolution.url;
-					$scope.profileLinks[i] = response.data[i].link; 
-				}
+				$scope.response = response;
+				// debugger;
+				// $scope.imageLinks = [];
+				// $scope.profileLinks = [];
 
-				console.log('imagelinks', $scope.imageLinks);
-				console.log('profilelinks', $scope.profileLinks);
+				
+				// for (var i = 0; i < response.data.length; i++) {
+				// 	$scope.imageLinks[i] = response.data[i].images.low_resolution.url;
+				// 	$scope.profileLinks[i] = response.data[i].link;
+				// }
 
-				for (var i = 0; i < response.data.length; i++) {
-					var a = document.createElement("a");
-					// a.setAttribute('href', $scope.profileLinks[i]);
-					a.href = $scope.profileLinks[i];
-					var img = document.createElement("img");
-					// img.setAttribute('src', $scope.imageLinks[i]);
-					img.src = $scope.imageLinks[i];
-					a.appendChild(img);
-					// a.class = 'images';
-					resultDisplay.appendChild(a);
-				}
-
-
+				// console.log('imageLinks', $scope.imageLinks);
+				// console.log('profileLinks', $scope.profileLinks)
 			}).error(function(message) {
 				$scope.failed = true;
 			});
-
 	}
 	
 });
