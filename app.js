@@ -42,17 +42,13 @@ myApp.controller('MyController', function($scope, $http) {
 
 				for (var i = 0; i < response.data.length; i++) {
 					var a = document.createElement("a");
-					a.setAttribute('href', $scope.profileLinks[i]);
+					// a.setAttribute('href', $scope.profileLinks[i]);
+					a.href = $scope.profileLinks[i];
 					var img = document.createElement("img");
 					// img.setAttribute('src', $scope.imageLinks[i]);
 					img.src = $scope.imageLinks[i];
+					a.appendChild(img);
 					// a.class = 'images';
-					// a.innerHTML = img; // displaying [object HTMLImageElement] rather than actual image
-/*returns 'undefined' in place of image */	// a.innerHTML = document.createElement("img").setAttribute('src', $scope.imageLinks[i]);
-					// angular.element(a).html(img);
-					var tmp = document.createElement('div');
-					tmp.appendChild(img);
-					a.innerHTML = tmp.innerHTML;
 					resultDisplay.appendChild(a);
 				}
 
