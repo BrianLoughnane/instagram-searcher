@@ -32,6 +32,7 @@ input {
 
 input[type="text"] {
 	width: 23%;
+	text-align: center;
 }
 
 input[type="submit"] {
