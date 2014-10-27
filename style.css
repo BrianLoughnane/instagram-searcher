@@ -44,6 +44,29 @@ span {
 	margin-bottom: 2%;
 }
 
+.image-links.ng-enter {
+	-webkit-animation: imgEnter 0.6s;
+}
+
+.image-links.ng-enter-stagger {
+	-webkit-transition-delay: 1s;
+}
+
+@-webkit-keyframes imgEnter {
+	from {
+		transform: translateY(-1000px);
+	}
+	10% {
+		transform: translateY(300px);
+	}
+	50% {
+		transform: translateY(-150px);
+	}
+	to {
+		transform: translateY(0px);
+	}
+}
+
 .images {
 	width: 25%;
 	margin: 3%;

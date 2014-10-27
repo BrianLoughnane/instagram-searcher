@@ -24,16 +24,10 @@
 		<span ng-if="submitted && resolved && !failed">We found 20 results for {{ tag }}</span>
 		<span ng-if="failed && valid">Something went wrong with your request...</span>
 		<span ng-if="submitted && !valid">Hey!  You didn't enter a search term!</span>
-		
-		<div class="resultDisplay">
-			
-		</div>
-<!-- 		<img ng-repeat="result in imageLinks" class="images" ng-src="https://fbcdn-sphotos-b-a.akamaihd.net/hphotos-ak-xfp1/v/t1.0-9/1661582_10203718760061993_4160092379533213628_n.jpg?oh=d95ee4e4e6f3169f9c4cc0014f0bf8da&oe=54AA7662&__gda__=1425581362_c07e2a977fa86df83e263f846ce55228"> -->
-<!-- 	<img ng-repeat="i in response.data" class="images" ng-src="{{ response.data[i].image.low_resolution.url }}"> -->
 
-	<a ng-repeat="img in response.data" href="{{ img.link }}">
-	<img class="images" ng-src="{{ img.images.low_resolution.url }}">
-	</a>
+		<a class='image-links' ng-repeat="img in response.data" href="{{ img.link }}">
+		<img class="images" ng-src="{{ img.images.low_resolution.url }}">
+		</a>
 
 	</div>
 	
